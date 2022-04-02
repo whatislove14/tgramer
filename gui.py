@@ -446,6 +446,7 @@ class MainWindow(QMainWindow):
 
     def start_working(self):
         # старт работы внешних скриптов
+        # возможно перенесу в другой файл
         pass
 
 
