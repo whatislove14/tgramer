@@ -445,6 +445,7 @@ class MainWindow(QMainWindow):
         self.log_win.show()
 
     def start_working(self):
+        # старт работы внешних скриптов
         pass
 
 
