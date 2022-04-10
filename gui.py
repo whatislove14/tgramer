@@ -2,8 +2,14 @@ import sys
 from time import sleep
 from PyQt5 import QtWidgets,  QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QGridLayout, QWidget, QPushButton, QVBoxLayout, QStackedLayout, QLayoutItem, QListWidget, QInputDialog, QLineEdit, QCheckBox, QComboBox, QTextEdit
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QFont, QFontDatabase, QPixmap, QCursor
+
+
+class PicClick(QLabel):
+    clicked = pyqtSignal()
+    def mouseReleaseEvent(self, QMouseEvent):
+        self.clicked.emit()
 
 
 class MainWindow(QMainWindow):
@@ -15,104 +21,168 @@ class MainWindow(QMainWindow):
 
         self.back_but = QPushButton(self)
         self.back_but.setStyleSheet('''
-        QPushButton {color: white;
-                    background-color: rgba(255, 255, 255, 0)
+        QPushButton {color: black;
+                    background-color: #c7d0d9;
+                    border: 1px solid rgb(144, 153, 162);
                                         }''')
-        self.back_but.resize(170, 50)
-        self.back_but.setFont(QFont(self.fontName, 20))
-        self.back_but.setText("BACK TO MENU")
-        self.back_but.move(5, 50)
+        self.back_but.setFont(QFont("Arial", 15))
+        self.back_but.setText("Назад")
+        self.back_but.resize(150, 40)
+        self.back_but.move(20, 50)
+        self.back_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
+
         self.back_but.clicked.connect(self.main_start)
         self.back_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.back_but.hide()
 
         self.setFixedSize(1152, 648)
         self.setWindowTitle("TGRAMER")
-        # self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+
         self.setStyleSheet('''
-        QMainWindow {background-image: url(back.png)}
+        QMainWindow {background-color: #d9d9d9}
         '''
                            )
 
         self.main_title = QLabel(self)
         self.main_title.setText("TGRAMER")
         self.main_title.setAlignment(Qt.AlignCenter)
-        self.main_title.resize(400, 90)
-        self.main_title.setFont(QFont(self.fontName, 70))
-        self.main_title.setStyleSheet('''
-        QLabel {color: white}''')
-        self.main_title.move(110, 250)
+        self.main_title.resize(400, 100)
+        self.main_title.setFont(QFont(self.fontName, 45))
+        self.main_title.move(370, 10)
         self.main_title.hide()
 
         self.by_title = QLabel(self)
-        self.by_title.setText("BY THE INTERNET")
+        self.by_title.setText("by THE INTERNET")
         self.by_title.setAlignment(Qt.AlignCenter)
         self.by_title.resize(400, 60)
-        self.by_title.setFont(QFont(self.fontName, 30))
-        self.by_title.setStyleSheet('''
-        QLabel {color: white}''')
-        self.by_title.move(140, 340)
+        self.by_title.setFont(QFont(self.fontName, 20))
+        self.by_title.move(370, 80)
         self.by_title.hide()
 
         self.pars_but = QPushButton(self)
-        self.pars_but.setText("PARSING")
-        self.pars_but.resize(400, 150)
-        self.pars_but.setFont(QFont(self.fontName, 60))
+        self.pars_but.setText("\n\n\n\nПарсинг")
+        self.pars_but.resize(300, 300)
+        self.pars_but.setFont(QFont("Arial", 21))
+        self.pars_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
+
         self.pars_but.setStyleSheet('''
-        QPushButton {background-color: #EE0823;
-                    color: white;
+        QPushButton {background-color: #c7d0d9;
+                    color: black;
+                    border: 2px solid rgb(144, 153, 162);
+                    text-align: bottom;
                                         }''')
 
-        self.pars_but.move(700, 220)
+        self.pars_but.move(70, 150)
         self.pars_but.clicked.connect(self.pars_window)
         self.pars_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.pars_but.hide()
 
+        self.pars_pic = PicClick(self)
+        self.pars_pic.setPixmap(QPixmap('pars.png'))
+        self.pars_pic.resize(150, 150)
+        self.pars_pic.move(150, 189)
+        self.pars_pic.clicked.connect(self.pars_window)
+        self.pars_pic.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.pars_pic.hide()
+
+
         self.inv_but = QPushButton(self)
-        self.inv_but.setText("INVITING")
+        self.inv_but.setText("\n\n\n\nИнвайтинг")
         # self.pars_but.setAlignment(Qt.AlignCenter)
-        self.inv_but.resize(400, 150)
-        self.inv_but.setFont(QFont(self.fontName, 60))
+        self.inv_but.resize(300, 300)
+        self.inv_but.setFont(QFont("Arial", 21))
+        self.inv_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
+
         self.inv_but.setStyleSheet('''
-        QPushButton {background-color: #EE0823;
-                    color: white;
+        QPushButton {background-color: #c7d0d9;
+                    color: black;
+                    border: 2px solid rgb(144, 153, 162);
                                         }''')
-        self.inv_but.move(700, 20)
+        self.inv_but.move(420, 150)
         self.inv_but.clicked.connect(self.inv_window)
         self.inv_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.inv_but.hide()
 
+        self.inv_pic = PicClick(self)
+        self.inv_pic.setPixmap(QPixmap('inv.png'))
+        self.inv_pic.resize(150, 150)
+        self.inv_pic.move(500, 189)
+        self.inv_pic.clicked.connect(self.inv_window)
+        self.inv_pic.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.inv_pic.hide()
+
         self.mail_but = QPushButton(self)
-        self.mail_but.setText("MAILING")
-        # self.pars_but.setAlignment(Qt.AlignCenter)
-        self.mail_but.resize(400, 150)
-        self.mail_but.setFont(QFont(self.fontName, 60))
+        self.mail_but.setText("\n\n\n\nРассылка")
+        self.mail_but.resize(300, 300)
+        self.mail_but.setFont(QFont("Arial", 21))
+        self.mail_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
+
         self.mail_but.setStyleSheet('''
-        QPushButton {background-color: #EE0823;
-                    color: white;
+        QPushButton {background-color: #c7d0d9;
+                    color: black;
+                    border: 2px solid rgb(144, 153, 162);
                                         }''')
-        self.mail_but.move(700, 420)
+        self.mail_but.move(770, 150)
         self.mail_but.clicked.connect(self.mail_window)
         self.mail_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.mail_but.hide()
 
-        self.pointer1 = QLabel(self)
-        self.pointer1.setPixmap(QPixmap("pointer.png"))
-        self.pointer1.resize(QPixmap("pointer.png").size())
-        self.pointer1.move(610, 460)
-        self.pointer1.hide()
+        self.mail_pic = PicClick(self)
+        self.mail_pic.setPixmap(QPixmap('mail.png'))
+        self.mail_pic.clicked.connect(self.mail_window)
+        self.mail_pic.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.mail_pic.resize(150, 150)
+        self.mail_pic.move(850, 189)
+        self.mail_pic.hide()
 
-        self.pointer2 = QLabel(self)
-        self.pointer2.setPixmap(QPixmap("pointer.png"))
-        self.pointer2.resize(QPixmap("pointer.png").size())
-        self.pointer2.move(610, 260)
-        self.pointer2.hide()
+        self.instr_button = QPushButton(self)
+        self.instr_button.setText("Инструкция")
+        self.instr_button.resize(300, 90)
+        self.instr_button.setFont(QFont("Arial", 20))
+        self.instr_button.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
 
-        self.pointer3 = QLabel(self)
-        self.pointer3.setPixmap(QPixmap("pointer.png"))
-        self.pointer3.resize(QPixmap("pointer.png").size())
-        self.pointer3.move(610, 60)
-        self.pointer3.hide()
+        self.instr_button.setStyleSheet('''
+        QPushButton {background-color: #c7d0d9;
+                    color: black;
+                    border: 2px solid rgb(144, 153, 162);
+                                        }''')
+
+        self.instr_button.move(20, 525)
+        # self.instr_button.clicked.connect()
+        self.instr_button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.instr_button.hide()
+
+        self.channel_text = QLabel(self)
+        self.channel_text.setText("Канал Telegram:")
+        self.channel_text.setAlignment(Qt.AlignCenter)
+        self.channel_text.resize(400, 60)
+        self.channel_text.setFont(QFont("Arial", 18))
+        self.channel_text.move(750, 525)
+        self.channel_text.hide()
+
+        self.channel_link = QLabel(self)
+        self.channel_link.setText('<a href="https://t.me/the_internetgroup">@the_internetgroup</a>')
+        self.channel_link.setOpenExternalLinks(True)
+        self.channel_link.setAlignment(Qt.AlignCenter)
+        self.channel_link.resize(400, 60)
+        self.channel_link.setFont(QFont("Arial", 18))
+        self.channel_link.move(750, 565)
+        self.channel_link.hide()
 
         self.log_win = QListWidget(self)
         self.log_win.setFont(QFont(self.fontName, 10))
@@ -136,11 +206,21 @@ class MainWindow(QMainWindow):
         self.log_title.move(700, 220)
         self.log_title.hide()
 
+        self.group_link_text = QLabel(self)
+        self.group_link_text.setText("Ссылка на группу")
+        self.group_link_text.resize(400, 40)
+        self.group_link_text.setAlignment(Qt.AlignCenter)
+        self.group_link_text.setFont(QFont("Arial", 15))
+        self.group_link_text.move(370, 130)
+        self.group_link_text.hide()
+
         self.group_link_zone = QLineEdit(self)
-        self.group_link_zone.setPlaceholderText("Ссылка на группу")
-        self.group_link_zone.setFont(QFont(self.fontName, 20))
-        self.group_link_zone.move(280, 120)
-        self.group_link_zone.resize(300, 30)
+        self.group_link_zone.setFont(QFont("Arial", 15))
+        self.group_link_zone.move(370, 175)
+        self.group_link_zone.setStyleSheet('''
+        QLineEdit {border: 4px solid rgb(144, 153, 162);
+                                        }''')
+        self.group_link_zone.resize(400, 30)
         self.group_link_zone.hide()
 
         self.group_add_zone = QLineEdit(self)
@@ -172,16 +252,21 @@ class MainWindow(QMainWindow):
         self.group_pausemax_zone.hide()
 
         self.start_but = QPushButton(self)
-        self.start_but.setText("START INVITING")
-        # self.pars_but.setAlignment(Qt.AlignCenter)
-        self.start_but.resize(400, 150)
-        self.start_but.setFont(QFont(self.fontName, 40))
+        self.start_but.setText("Запуск")
+        self.start_but.resize(200, 60)
+        self.start_but.setFont(QFont("Arial", 20))
         self.start_but.setStyleSheet('''
-        QPushButton {background-color: #EE0823;
-                    color: white;
+        QPushButton {background-color: #c7d0d9;
+                    color: black;
+                    border: 2px solid rgb(144, 153, 162);
                                         }''')
-        self.start_but.move(700, 20)
-        self.start_but.clicked.connect(self.start_working)
+        self.start_but.move(450, 500)
+        self.start_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(5.0, 5.0)))
+
+        self.start_but.clicked.connect(lambda: self.start_working("inv"))
         self.start_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.start_but.hide()
 
@@ -327,14 +412,33 @@ class MainWindow(QMainWindow):
         self.mes_pause.resize(320, 30)
         self.mes_pause.hide()
 
+        self.wind_title = QLabel(self)
+        self.wind_title.setText("Парсинг")
+        self.wind_title.setAlignment(Qt.AlignCenter)
+        self.wind_title.resize(400, 60)
+        self.wind_title.setFont(QFont("Arial", 25))
+        self.wind_title.move(370, 50)
+        self.wind_title.hide()
+
         self.main_start()
 
     def main_start(self):
         self.main_title.show()
         self.by_title.show()
         self.pars_but.show()
+        self.pars_pic.show()
         self.inv_but.show()
+        self.inv_pic.show()
         self.mail_but.show()
+        self.mail_pic.show()
+        self.instr_button.show()
+        self.channel_text.show()
+        self.channel_link.show()
+
+        self.start_but.hide()
+        self.back_but.hide()
+        self.wind_title.hide()
+        '''
 
         self.log_win.hide()
         self.pointer1.show()
@@ -342,14 +446,12 @@ class MainWindow(QMainWindow):
         self.pointer3.show()
 
         self.log_title.hide()
-        self.back_but.hide()
 
         self.group_link_zone.hide()
         self.group_add_zone.hide()
         self.group_each_zone.hide()
         self.group_pausemin_zone.hide()
         self.group_pausemax_zone.hide()
-        self.start_but.hide()
 
         self.check_memb.hide()
         self.check_memb_text.hide()
@@ -367,21 +469,31 @@ class MainWindow(QMainWindow):
         self.mes_total.hide()
         self.mes_each.hide()
         self.mes_pause.hide()
+        '''
 
     def pars_window(self):
+        self.pars_but.hide()
+        self.pars_pic.hide()
         self.inv_but.hide()
+        self.inv_pic.hide()
         self.mail_but.hide()
+        self.mail_pic.hide()
         self.main_title.hide()
         self.by_title.hide()
-        self.pointer1.hide()
-        self.pointer2.hide()
-        self.pointer3.hide()
+        self.instr_button.hide()
+        self.channel_text.hide()
+        self.channel_link.hide()
 
         self.back_but.show()
-        self.start_but.move(self.pars_but.pos())
-        self.start_but.setText("START PARSING")
+        self.start_but.clicked.disconnect()
+        self.start_but.clicked.connect(lambda: self.start_working("pars"))
         self.start_but.show()
 
+        self.wind_title.show()
+        self.group_link_text.show()
+        self.group_link_zone.show()
+
+        '''
         self.group_link_zone.show()
         self.check_memb.show()
         self.check_memb_text.show()
@@ -393,18 +505,27 @@ class MainWindow(QMainWindow):
         self.check_chatting_text.show()
         self.active.show()
         self.active_text.show()
+        '''
 
     def inv_window(self):
         self.pars_but.hide()
+        self.pars_pic.hide()
+        self.inv_but.hide()
+        self.inv_pic.hide()
         self.mail_but.hide()
+        self.mail_pic.hide()
         self.main_title.hide()
         self.by_title.hide()
-        self.pointer1.hide()
-        self.pointer2.hide()
-        self.pointer3.hide()
-        self.inv_but.hide()
+        self.instr_button.hide()
+        self.channel_text.hide()
+        self.channel_link.hide()
 
         self.back_but.show()
+        self.start_but.clicked.disconnect()
+        self.start_but.clicked.connect(lambda: self.start_working("inv"))
+        self.start_but.show()
+
+        '''
         self.log_win.move(700, 240)
         self.log_win.show()
         self.log_title.move(700, 220)
@@ -414,25 +535,27 @@ class MainWindow(QMainWindow):
         self.group_each_zone.show()
         self.group_pausemin_zone.show()
         self.group_pausemax_zone.show()
-
-        self.start_but.move(self.inv_but.pos())
-        self.start_but.setText("START INVITING")
-        self.start_but.show()
+        '''
 
     def mail_window(self):
-        self.inv_but.hide()
         self.pars_but.hide()
+        self.pars_pic.hide()
+        self.inv_but.hide()
+        self.inv_pic.hide()
+        self.mail_but.hide()
+        self.mail_pic.hide()
         self.main_title.hide()
         self.by_title.hide()
-        self.pointer1.hide()
-        self.pointer2.hide()
-        self.pointer3.hide()
+        self.instr_button.hide()
+        self.channel_text.hide()
+        self.channel_link.hide()
 
         self.back_but.show()
-        self.start_but.move(self.mail_but.pos())
-        self.start_but.setText("START MAILING")
+        self.start_but.clicked.disconnect()
+        self.start_but.clicked.connect(lambda: self.start_working("mail"))
         self.start_but.show()
 
+        '''
         self.mes_zone.show()
         self.mes_title.show()
         self.mes_total.show()
@@ -443,11 +566,10 @@ class MainWindow(QMainWindow):
         self.log_title.show()
         self.log_win.move(700, 40)
         self.log_win.show()
+        '''
 
-    def start_working(self):
-        # старт работы внешних скриптов
-        # возможно перенесу в другой файл
-        pass
+    def start_working(self, param):
+        print(param)
 
 
 app = QApplication(sys.argv)
