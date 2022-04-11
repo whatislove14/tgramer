@@ -223,24 +223,54 @@ class MainWindow(QMainWindow):
         self.group_link_zone.resize(400, 30)
         self.group_link_zone.hide()
 
+        self.group_add_text = QLabel(self)
+        self.group_add_text.setText("Сколько добавить всего")
+        self.group_add_text.resize(400, 40)
+        self.group_add_text.setAlignment(Qt.AlignCenter)
+        self.group_add_text.setFont(QFont("Arial", 15))
+        self.group_add_text.move(120, 220)
+        self.group_add_text.hide()
+
         self.group_add_zone = QLineEdit(self)
-        self.group_add_zone.setPlaceholderText("Сколько добавить всего")
-        self.group_add_zone.setFont(QFont(self.fontName, 20))
-        self.group_add_zone.move(280, 220)
-        self.group_add_zone.resize(300, 30)
+        self.group_add_zone.setFont(QFont("Arial", 15))
+        self.group_add_zone.move(180, 265)
+        self.group_add_zone.setStyleSheet('''
+        QLineEdit {border: 4px solid rgb(144, 153, 162);
+                                        }''')
+        self.group_add_zone.resize(400, 30)
         self.group_add_zone.hide()
 
+        self.group_each_text = QLabel(self)
+        self.group_each_text.setText("Сколько добавить c каждого аккаунта")
+        self.group_each_text.resize(450, 40)
+        self.group_each_text.setAlignment(Qt.AlignCenter)
+        self.group_each_text.setFont(QFont("Arial", 15))
+        self.group_each_text.move(175, 310)
+        self.group_each_text.hide()
+
         self.group_each_zone = QLineEdit(self)
-        self.group_each_zone.setPlaceholderText("Сколько c каждого аккаунта")
-        self.group_each_zone.setFont(QFont(self.fontName, 20))
-        self.group_each_zone.move(280, 300)
-        self.group_each_zone.resize(300, 30)
+        self.group_each_zone.setFont(QFont("Arial", 15))
+        self.group_each_zone.move(180, 355)
+        self.group_each_zone.setStyleSheet('''
+        QLineEdit {border: 4px solid rgb(144, 153, 162);
+                                        }''')
+        self.group_each_zone.resize(400, 30)
         self.group_each_zone.hide()
 
+        self.group_pausemin_text = QLabel(self)
+        self.group_pausemin_text.setText("Мин. пауза")
+        self.group_pausemin_text.resize(450, 40)
+        self.group_pausemin_text.setAlignment(Qt.AlignCenter)
+        self.group_pausemin_text.setFont(QFont("Arial", 15))
+        self.group_pausemin_text.move(25, 400)
+        self.group_pausemin_text.hide()
+
         self.group_pausemin_zone = QLineEdit(self)
-        self.group_pausemin_zone.setPlaceholderText("Мин. пауза")
-        self.group_pausemin_zone.setFont(QFont(self.fontName, 20))
-        self.group_pausemin_zone.move(280, 420)
+        self.group_pausemin_zone.setFont(QFont("Arial", 15))
+        self.group_pausemin_zone.move(180, 445)
+        self.group_pausemin_zone.setStyleSheet('''
+        QLineEdit {border: 4px solid rgb(144, 153, 162);
+                                        }''')
         self.group_pausemin_zone.resize(150, 30)
         self.group_pausemin_zone.hide()
 
@@ -260,7 +290,7 @@ class MainWindow(QMainWindow):
                     color: black;
                     border: 2px solid rgb(144, 153, 162);
                                         }''')
-        self.start_but.move(450, 500)
+        self.start_but.move(470, 500)
         self.start_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
             blurRadius=0.0,
             color=QtGui.QColor(153, 167, 176),
@@ -451,6 +481,13 @@ class MainWindow(QMainWindow):
         self.check_chatting.hide()
         self.active.hide()
         self.active_text.hide()
+
+        self.group_add_zone.hide()
+        self.group_add_text.hide()
+        self.group_each_text.hide()
+        self.group_each_zone.hide()
+        self.group_pausemin_text.hide()
+        self.group_pausemin_zone.hide()
         '''
 
         self.log_win.hide()
@@ -502,9 +539,15 @@ class MainWindow(QMainWindow):
         self.start_but.clicked.connect(lambda: self.start_working("pars"))
         self.start_but.show()
 
+        self.wind_title.setText("Парсинг")
         self.wind_title.show()
+
+        self.group_link_text.move(370, 130)
         self.group_link_text.show()
+
+        self.group_link_zone.move(370, 175)
         self.group_link_zone.show()
+
         self.check_memb_text.show()
         self.check_memb.show()
         self.check_amd.show()
@@ -547,6 +590,22 @@ class MainWindow(QMainWindow):
         self.start_but.clicked.disconnect()
         self.start_but.clicked.connect(lambda: self.start_working("inv"))
         self.start_but.show()
+
+        self.wind_title.setText("Инвайтинг")
+        self.wind_title.show()
+
+        self.group_link_text.move(80, 130)
+        self.group_link_text.show()
+
+        self.group_link_zone.move(180, 175)
+        self.group_link_zone.show()
+
+        self.group_add_text.show()
+        self.group_add_zone.show()
+        self.group_each_text.show()
+        self.group_each_zone.show()
+        self.group_pausemin_text.show()
+        self.group_pausemin_zone.show()
 
         '''
         self.log_win.move(700, 240)
