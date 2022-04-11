@@ -272,107 +272,108 @@ class MainWindow(QMainWindow):
 
         self.check_memb = QCheckBox(self)
         self.check_memb.setChecked(True)
-        self.check_memb.move(450, 220)
+        self.check_memb.move(510, 240)
+        self.check_memb.resize(28, 27)
         self.check_memb.setStyleSheet('''
-            QCheckBox {}
+            QCheckBox {border: 4px solid rgb(144, 153, 162);
+                                        }
 
             QCheckBox::indicator {
-            width: 30px;
-            height: 30px;}
+            width: 20px;
+            height: 20px;}
         ''')
         self.check_memb.hide()
 
         self.check_memb_text = QLabel(self)
         self.check_memb_text.setText("Участники")
-        self.check_memb_text.setAlignment(Qt.AlignRight)
         self.check_memb_text.resize(150, 40)
-        self.check_memb_text.setFont(QFont(self.fontName, 20))
-        self.check_memb_text.setStyleSheet('''
-        QLabel {color: white}''')
-        self.check_memb_text.move(280, 215)
+        self.check_memb_text.setFont(QFont("Arial", 15))
+        self.check_memb_text.move(370, 230)
         self.check_memb_text.hide()
 
         self.check_amd = QCheckBox(self)
         self.check_amd.setChecked(True)
-        self.check_amd.move(450, 280)
+        self.check_amd.move(510, 290)
+        self.check_amd.resize(28, 27)
         self.check_amd.setStyleSheet('''
-            QCheckBox {}
+            QCheckBox {border: 4px solid rgb(144, 153, 162);
+                                        }
 
             QCheckBox::indicator {
-            width: 30px;
-            height: 30px;}
+            width: 20px;
+            height: 20px;}
         ''')
         self.check_amd.hide()
 
         self.check_adm_text = QLabel(self)
         self.check_adm_text.setText("Админы")
-        self.check_adm_text.setAlignment(Qt.AlignRight)
         self.check_adm_text.resize(150, 40)
-        self.check_adm_text.setFont(QFont(self.fontName, 20))
-        self.check_adm_text.setStyleSheet('''
-        QLabel {color: white}''')
-        self.check_adm_text.move(280, 275)
+        self.check_adm_text.setFont(QFont("Arial", 15))
+        self.check_adm_text.move(370, 280)
         self.check_adm_text.hide()
 
         self.check_photo = QCheckBox(self)
-        self.check_photo.move(450, 340)
+        self.check_photo.move(780, 240)
+        self.check_photo.resize(28, 27)
         self.check_photo.setStyleSheet('''
-            QCheckBox {}
+            QCheckBox {border: 4px solid rgb(144, 153, 162);
+                                        }
 
             QCheckBox::indicator {
-            width: 30px;
-            height: 30px;}
+            width: 20px;
+            height: 20px;}
         ''')
         self.check_photo.hide()
 
         self.check_photo_text = QLabel(self)
         self.check_photo_text.setText("С фото профиля")
-        self.check_photo_text.setAlignment(Qt.AlignRight)
-        self.check_photo_text.resize(190, 40)
-        self.check_photo_text.setFont(QFont(self.fontName, 20))
-        self.check_photo_text.setStyleSheet('''
-        QLabel {color: white}''')
-        self.check_photo_text.move(240, 335)
+        self.check_photo_text.resize(210, 40)
+        self.check_photo_text.setFont(QFont("Arial", 15))
+        self.check_photo_text.move(560, 230)
         self.check_photo_text.hide()
 
         self.check_chatting = QCheckBox(self)
-        self.check_chatting.move(450, 400)
+        self.check_chatting.move(780, 290)
+        self.check_chatting.resize(28, 27)
         self.check_chatting.setStyleSheet('''
-            QCheckBox {}
+            QCheckBox {border: 4px solid rgb(144, 153, 162);
+                                        }
 
             QCheckBox::indicator {
-            width: 30px;
-            height: 30px;}
+            width: 20px;
+            height: 20px;}
         ''')
         self.check_chatting.hide()
 
         self.check_chatting_text = QLabel(self)
         self.check_chatting_text.setText("Писали в чат")
-        self.check_chatting_text.setAlignment(Qt.AlignRight)
         self.check_chatting_text.resize(190, 40)
-        self.check_chatting_text.setFont(QFont(self.fontName, 20))
-        self.check_chatting_text.setStyleSheet('''
-        QLabel {color: white}''')
-        self.check_chatting_text.move(240, 395)
+        self.check_chatting_text.setFont(QFont("Arial", 15))
+        self.check_chatting_text.move(560, 280)
         self.check_chatting_text.hide()
 
         self.active = QComboBox(self)
-        self.active.resize(100, 30)
-        self.active.setFont(QFont(self.fontName, 15))
+        self.active.resize(140, 30)
+        self.active.setFont(QFont("Arial", 10))
+        self.active.setStyleSheet('''
+        QComboBox {border: 4px solid rgb(144, 153, 162);
+                                        };
+        ''')
         self.active.addItem("Все")
         self.active.addItem("Онлайн")
+        self.active.addItem("Сутки")
+        self.active.addItem("3 дня")
         self.active.addItem("Неделя")
-        self.active.move(450, 460)
+        self.active.addItem("Месяц")
+        self.active.move(500, 400)
         self.active.hide()
 
         self.active_text = QLabel(self)
         self.active_text.setText("Активность")
-        self.active_text.setAlignment(Qt.AlignRight)
-        self.active_text.resize(190, 40)
-        self.active_text.setFont(QFont(self.fontName, 20))
-        self.active_text.setStyleSheet('''
-        QLabel {color: white}''')
-        self.active_text.move(240, 455)
+        self.active_text.setAlignment(Qt.AlignCenter)
+        self.active_text.resize(400, 30)
+        self.active_text.setFont(QFont("Arial", 15))
+        self.active_text.move(370, 350)
         self.active_text.hide()
 
         self.mes_zone = QTextEdit(self)
@@ -438,6 +439,18 @@ class MainWindow(QMainWindow):
         self.start_but.hide()
         self.back_but.hide()
         self.wind_title.hide()
+        self.group_link_text.hide()
+        self.group_link_zone.hide()
+        self.check_memb_text.hide()
+        self.check_memb.hide()
+        self.check_amd.hide()
+        self.check_adm_text.hide()
+        self.check_photo.hide()
+        self.check_photo_text.hide()
+        self.check_chatting_text.hide()
+        self.check_chatting.hide()
+        self.active.hide()
+        self.active_text.hide()
         '''
 
         self.log_win.hide()
@@ -454,7 +467,7 @@ class MainWindow(QMainWindow):
         self.group_pausemax_zone.hide()
 
         self.check_memb.hide()
-        self.check_memb_text.hide()
+        
         self.check_amd.hide()
         self.check_adm_text.hide()
         self.check_photo.hide()
@@ -492,6 +505,16 @@ class MainWindow(QMainWindow):
         self.wind_title.show()
         self.group_link_text.show()
         self.group_link_zone.show()
+        self.check_memb_text.show()
+        self.check_memb.show()
+        self.check_amd.show()
+        self.check_adm_text.show()
+        self.check_photo.show()
+        self.check_photo_text.show()
+        self.check_chatting_text.show()
+        self.check_chatting.show()
+        self.active.show()
+        self.active_text.show()
 
         '''
         self.group_link_zone.show()
