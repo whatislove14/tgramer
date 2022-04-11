@@ -186,18 +186,20 @@ class MainWindow(QMainWindow):
 
         self.log_win = QListWidget(self)
         self.log_win.setFont(QFont("Arial", 10))
-        self.log_win.resize(460, 300)
+        self.log_win.resize(400, 300)
         self.log_win.setStyleSheet('''
         QListWidget {border: 4px solid rgb(144, 153, 162);
                                         }''')
-        self.log_win.move(640, 175)
+        self.log_win.move(700, 175)
         self.log_win.hide()
+
+        for i in range(20): self.log_win.addItem(f"[+] test log message{str(i)}")
 
         self.log_title = QLabel(self)
         self.log_title.setFont(QFont("Arial", 15))
         self.log_title.resize(400, 20)
         self.log_title.setText("Логи")
-        self.log_title.move(640, 130)
+        self.log_title.move(700, 130)
         self.log_title.hide()
 
         self.group_link_text = QLabel(self)
@@ -209,7 +211,7 @@ class MainWindow(QMainWindow):
         self.group_link_text.hide()
 
         self.group_link_zone = QLineEdit(self)
-        self.group_link_zone.setFont(QFont("Arial", 15))
+        self.group_link_zone.setFont(QFont("Arial", 13))
         self.group_link_zone.move(370, 175)
         self.group_link_zone.setStyleSheet('''
         QLineEdit {border: 4px solid rgb(144, 153, 162);
@@ -226,7 +228,7 @@ class MainWindow(QMainWindow):
         self.group_add_text.hide()
 
         self.group_add_zone = QLineEdit(self)
-        self.group_add_zone.setFont(QFont("Arial", 15))
+        self.group_add_zone.setFont(QFont("Arial", 13))
         self.group_add_zone.move(180, 265)
         self.group_add_zone.setStyleSheet('''
         QLineEdit {border: 4px solid rgb(144, 153, 162);
@@ -243,7 +245,7 @@ class MainWindow(QMainWindow):
         self.group_each_text.hide()
 
         self.group_each_zone = QLineEdit(self)
-        self.group_each_zone.setFont(QFont("Arial", 15))
+        self.group_each_zone.setFont(QFont("Arial", 13))
         self.group_each_zone.move(180, 355)
         self.group_each_zone.setStyleSheet('''
         QLineEdit {border: 4px solid rgb(144, 153, 162);
@@ -260,7 +262,7 @@ class MainWindow(QMainWindow):
         self.group_pausemin_text.hide()
 
         self.group_pausemin_zone = QLineEdit(self)
-        self.group_pausemin_zone.setFont(QFont("Arial", 15))
+        self.group_pausemin_zone.setFont(QFont("Arial", 13))
         self.group_pausemin_zone.move(180, 445)
         self.group_pausemin_zone.setStyleSheet('''
         QLineEdit {border: 4px solid rgb(144, 153, 162);
@@ -277,7 +279,7 @@ class MainWindow(QMainWindow):
         self.group_pausemax_text.hide()
 
         self.group_pausemax_zone = QLineEdit(self)
-        self.group_pausemax_zone.setFont(QFont("Arial", 15))
+        self.group_pausemax_zone.setFont(QFont("Arial", 13))
         self.group_pausemax_zone.move(430, 445)
         self.group_pausemax_zone.setStyleSheet('''
         QLineEdit {border: 4px solid rgb(144, 153, 162);
@@ -411,41 +413,79 @@ class MainWindow(QMainWindow):
         self.active_text.hide()
 
         self.mes_zone = QTextEdit(self)
-        self.mes_zone.setStyleSheet('''QTextEdit {border: 3px solid #EE0823}''')
-        self.mes_zone.setFont(QFont(self.fontName, 15))
-        self.mes_zone.move(250, 120)
-        self.mes_zone.resize(390, 200)
+        self.mes_zone.setStyleSheet('''QTextEdit { border: 4px solid rgb(144, 153, 162); }''')
+        self.mes_zone.setFont(QFont(self.fontName, 10))
+        self.mes_zone.move(50, 175)
+        self.mes_zone.resize(480, 150)
         self.mes_zone.hide()
 
         self.mes_title = QLabel(self)
         self.mes_title.setText("Сообщение")
-        self.mes_title.resize(200, 40)
-        self.mes_title.setFont(QFont(self.fontName, 20))
-        self.mes_title.setStyleSheet('''
-        QLabel {color: white}''')
-        self.mes_title.move(250, 80)
+        self.mes_title.resize(200, 30)
+        self.mes_title.setFont(QFont("Arial", 15))
+        self.mes_title.move(50, 130)
         self.mes_title.hide()
 
+        self.mes_total_text = QLabel(self)
+        self.mes_total_text.setText("Сколько отправить всего")
+        self.mes_total_text.resize(300, 30)
+        self.mes_total_text.setFont(QFont("Arial", 15))
+        self.mes_total_text.move(50, 340)
+        self.mes_total_text.hide()
+
         self.mes_total = QLineEdit(self)
-        self.mes_total.setPlaceholderText("Сколько отправить всего")
-        self.mes_total.setFont(QFont(self.fontName, 20))
-        self.mes_total.move(250, 380)
-        self.mes_total.resize(320, 30)
+        self.mes_total.setFont(QFont("Arial", 10))
+        self.mes_total.move(50, 370)
+        self.mes_total.setStyleSheet('''QLineEdit { border: 4px solid rgb(144, 153, 162); }''')
+        self.mes_total.resize(520, 30)
         self.mes_total.hide()
 
+        self.mes_each_text = QLabel(self)
+        self.mes_each_text.setText("Сколько отправить с каждого аккаунта")
+        self.mes_each_text.resize(500, 30)
+        self.mes_each_text.setFont(QFont("Arial", 15))
+        self.mes_each_text.move(50, 410)
+        self.mes_each_text.hide()
+
         self.mes_each = QLineEdit(self)
-        self.mes_each.setPlaceholderText("Сколько с каждого")
-        self.mes_each.setFont(QFont(self.fontName, 20))
-        self.mes_each.move(250, 420)
-        self.mes_each.resize(320, 30)
+        self.mes_each.setFont(QFont("Arial", 10))
+        self.mes_each.setStyleSheet('''QLineEdit { border: 4px solid rgb(144, 153, 162); }''')
+        self.mes_each.move(50, 445)
+        self.mes_each.resize(520, 30)
         self.mes_each.hide()
 
+        self.mes_pause_text = QLabel(self)
+        self.mes_pause_text.setText("Задержка")
+        self.mes_pause_text.resize(200, 30)
+        self.mes_pause_text.setFont(QFont("Arial", 15))
+        self.mes_pause_text.move(50, 485)
+        self.mes_pause_text.hide()
+
         self.mes_pause = QLineEdit(self)
-        self.mes_pause.setPlaceholderText("Задержка")
-        self.mes_pause.setFont(QFont(self.fontName, 20))
-        self.mes_pause.move(250, 460)
-        self.mes_pause.resize(320, 30)
+        self.mes_pause.setFont(QFont("Arial", 10))
+        self.mes_pause.setStyleSheet('''QLineEdit { border: 4px solid rgb(144, 153, 162); }''')
+        self.mes_pause.move(50, 515)
+        self.mes_pause.resize(200, 30)
         self.mes_pause.hide()
+
+        self.file_but = QPushButton(self)
+        self.file_but.setStyleSheet('''
+        QPushButton {color: black;
+                    background-color: #c7d0d9;
+                    border: 1px solid rgb(144, 153, 162);
+                                        }''')
+        self.file_but.setFont(QFont("Arial", 10))
+        self.file_but.setText("Файл")
+        self.file_but.resize(80, 40)
+        self.file_but.move(535, 280)
+        self.file_but.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(self,
+            blurRadius=0.0,
+            color=QtGui.QColor(153, 167, 176),
+            offset=QtCore.QPointF(2.0, 2.0)))
+
+        # self.file_but.clicked.connect(self.main_start)
+        self.file_but.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        self.file_but.hide()
 
         self.wind_title = QLabel(self)
         self.wind_title.setText("Парсинг")
@@ -497,38 +537,16 @@ class MainWindow(QMainWindow):
 
         self.log_win.hide()
         self.log_title.hide()
-        '''
 
-        self.log_win.hide()
-        self.pointer1.show()
-        self.pointer2.show()
-        self.pointer3.show()
-
-        self.log_title.hide()
-
-        self.group_link_zone.hide()
-        self.group_add_zone.hide()
-        self.group_each_zone.hide()
-        self.group_pausemin_zone.hide()
-        self.group_pausemax_zone.hide()
-
-        self.check_memb.hide()
-        
-        self.check_amd.hide()
-        self.check_adm_text.hide()
-        self.check_photo.hide()
-        self.check_photo_text.hide()
-        self.check_chatting.hide()
-        self.check_chatting_text.hide()
-        self.active.hide()
-        self.active_text.hide()
-
-        self.mes_zone.hide()
         self.mes_title.hide()
+        self.mes_zone.hide()
+        self.file_but.hide()
         self.mes_total.hide()
+        self.mes_total_text.hide()
         self.mes_each.hide()
+        self.mes_each_text.hide()
+        self.mes_pause_text.hide()
         self.mes_pause.hide()
-        '''
 
     def pars_window(self):
         self.pars_but.hide()
@@ -567,20 +585,6 @@ class MainWindow(QMainWindow):
         self.check_chatting.show()
         self.active.show()
         self.active_text.show()
-
-        '''
-        self.group_link_zone.show()
-        self.check_memb.show()
-        self.check_memb_text.show()
-        self.check_amd.show()
-        self.check_adm_text.show()
-        self.check_photo.show()
-        self.check_photo_text.show()
-        self.check_chatting.show()
-        self.check_chatting_text.show()
-        self.active.show()
-        self.active_text.show()
-        '''
 
     def inv_window(self):
         self.pars_but.hide()
@@ -621,18 +625,6 @@ class MainWindow(QMainWindow):
         self.log_win.show()
         self.log_title.show()
 
-        '''
-        self.log_win.move(700, 240)
-        self.log_win.show()
-        self.log_title.move(700, 220)
-        self.log_title.show()
-        self.group_link_zone.show()
-        self.group_add_zone.show()
-        self.group_each_zone.show()
-        self.group_pausemin_zone.show()
-        self.group_pausemax_zone.show()
-        '''
-
     def mail_window(self):
         self.pars_but.hide()
         self.pars_pic.hide()
@@ -651,18 +643,20 @@ class MainWindow(QMainWindow):
         self.start_but.clicked.connect(lambda: self.start_working("mail"))
         self.start_but.show()
 
-        '''
-        self.mes_zone.show()
-        self.mes_title.show()
-        self.mes_total.show()
-        self.mes_each.show()
-        self.mes_pause.show()
+        self.wind_title.setText("Рассылка")
+        self.wind_title.show()
 
-        self.log_title.move(700, 20)
-        self.log_title.show()
-        self.log_win.move(700, 40)
+        self.mes_title.show()
+        self.mes_zone.show()
         self.log_win.show()
-        '''
+        self.log_title.show()
+        self.file_but.show()
+        self.mes_total.show()
+        self.mes_total_text.show()
+        self.mes_each.show()
+        self.mes_each_text.show()
+        self.mes_pause_text.show()
+        self.mes_pause.show()
 
     def start_working(self, param):
         print(param)
