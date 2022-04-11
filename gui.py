@@ -185,25 +185,19 @@ class MainWindow(QMainWindow):
         self.channel_link.hide()
 
         self.log_win = QListWidget(self)
-        self.log_win.setFont(QFont(self.fontName, 10))
-        self.log_win.resize(400, 360)
+        self.log_win.setFont(QFont("Arial", 10))
+        self.log_win.resize(460, 300)
         self.log_win.setStyleSheet('''
-        QListWidget {background-color: #EE0823;
-                    color: white;
+        QListWidget {border: 4px solid rgb(144, 153, 162);
                                         }''')
-        self.log_win.move(700, 240)
+        self.log_win.move(640, 175)
         self.log_win.hide()
 
         self.log_title = QLabel(self)
-        self.log_title.setFont(QFont(self.fontName, 20))
+        self.log_title.setFont(QFont("Arial", 15))
         self.log_title.resize(400, 20)
-        self.log_title.setText("LOGS:")
-        self.log_title.setStyleSheet('''
-        QLabel {background-color: #EE0823;
-                    color: white;
-                    text-decoration: underline;
-                                        }''')
-        self.log_title.move(700, 220)
+        self.log_title.setText("Логи")
+        self.log_title.move(640, 130)
         self.log_title.hide()
 
         self.group_link_text = QLabel(self)
@@ -274,10 +268,20 @@ class MainWindow(QMainWindow):
         self.group_pausemin_zone.resize(150, 30)
         self.group_pausemin_zone.hide()
 
+        self.group_pausemax_text = QLabel(self)
+        self.group_pausemax_text.setText("Макс. пауза")
+        self.group_pausemax_text.resize(450, 40)
+        self.group_pausemax_text.setAlignment(Qt.AlignCenter)
+        self.group_pausemax_text.setFont(QFont("Arial", 15))
+        self.group_pausemax_text.move(275, 400)
+        self.group_pausemax_text.hide()
+
         self.group_pausemax_zone = QLineEdit(self)
-        self.group_pausemax_zone.setPlaceholderText("Макс. пауза")
-        self.group_pausemax_zone.setFont(QFont(self.fontName, 20))
-        self.group_pausemax_zone.move(450, 420)
+        self.group_pausemax_zone.setFont(QFont("Arial", 15))
+        self.group_pausemax_zone.move(430, 445)
+        self.group_pausemax_zone.setStyleSheet('''
+        QLineEdit {border: 4px solid rgb(144, 153, 162);
+                                        }''')
         self.group_pausemax_zone.resize(150, 30)
         self.group_pausemax_zone.hide()
 
@@ -488,6 +492,11 @@ class MainWindow(QMainWindow):
         self.group_each_zone.hide()
         self.group_pausemin_text.hide()
         self.group_pausemin_zone.hide()
+        self.group_pausemax_text.hide()
+        self.group_pausemax_zone.hide()
+
+        self.log_win.hide()
+        self.log_title.hide()
         '''
 
         self.log_win.hide()
@@ -606,6 +615,11 @@ class MainWindow(QMainWindow):
         self.group_each_zone.show()
         self.group_pausemin_text.show()
         self.group_pausemin_zone.show()
+        self.group_pausemax_text.show()
+        self.group_pausemax_zone.show()
+
+        self.log_win.show()
+        self.log_title.show()
 
         '''
         self.log_win.move(700, 240)
